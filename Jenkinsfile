@@ -9,7 +9,6 @@ pipeline {
         stage('Git Pull') {
             steps {
                 git url: 'https://github.com/Riddhi-Chatterjee/calculator.git', branch: 'main',
-                credentialsId: 'Credential_Git'
             }
         }
         stage('Build') {
