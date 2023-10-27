@@ -38,14 +38,14 @@ pipeline {
                 }
             }
         }
-        stage('Push image to DockerHub') {
-            steps {
-                script{
-                    sh '/usr/local/bin/docker login -u "riddhich" -p "ripple@2002"'
-                    sh '/usr/local/bin/docker push ' +registry +':latest'
-                } 
-            }
-        }
+        // stage('Push image to DockerHub') {
+        //     steps {
+        //         script{
+        //             sh '/usr/local/bin/docker login -u "riddhich" -p "ripple@2002"'
+        //             sh '/usr/local/bin/docker push ' +registry +':latest'
+        //         } 
+        //     }
+        // }
         stage('Free local space') {
             steps {
                 sh '/usr/local/bin/docker rmi $registry:latest'
