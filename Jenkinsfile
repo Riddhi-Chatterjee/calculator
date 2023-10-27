@@ -66,7 +66,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh '/Users/riddhichatterjee/Library/Python/3.8/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'
+                sh '/Users/riddhichatterjee/Library/Python/3.9/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'
             }
         }
 
