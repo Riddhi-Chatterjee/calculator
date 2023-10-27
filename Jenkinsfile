@@ -5,6 +5,14 @@ pipeline {
         nodejs "nodejs"
     }
 
+    environment {
+            CI = 'true'
+            registry = 'riddhich/calculator'
+            DOCKERHUB_CRED = credentials('CRED_DOCKER')
+            registryCredential = 'CRED_DOCKER'
+            dockerimage = ''
+    }
+
     stages {
         stage('git pull') {
             steps {
@@ -21,6 +29,13 @@ pipeline {
             steps {
                 sh 'chmod 777 ./scripts/test.sh' //Ensuring that test.sh is executable
                 sh './scripts/test.sh' //Executing test.sh
+            }
+        }
+        stage('Build docker image') {
+            steps {
+                script{
+                    dockerimage = sh '/usr/local/bin/docker build -t'+registry+':latest .'
+                }
             }
         }
     }
