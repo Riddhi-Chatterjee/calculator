@@ -34,6 +34,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script{
+                    sh 'cp ./config.json ~/.docker/config.json'
                     dockerimage = sh '/usr/local/bin/docker build -t'+registry+':latest .'
                 }
             }
@@ -51,22 +52,19 @@ pipeline {
                 sh '/usr/local/bin/docker rmi $registry:latest'
             }
         }
-        // stage('Step 6: Ansible Deployment') {
-        //     steps {
-        //         ansiblePlaybook becomeUser: null,
-        //         colorized: true,
-        //         credentialsId: 'localhost',
-        //         disableHostKeyChecking: true,
-        //         installation: 'Ansible',
-        //         inventory: 'Deployment/inventory',
-        //         playbook: 'Deployment/deploy.yml',
-        //         sudoUser: null
-        //     }
-        // } 
-
         stage('Deploy') {
             steps {
+                sh 'export PATH="/Users/riddhichatterjee/Library/Python/3.9/bin:$PATH"'
                 sh '/Users/riddhichatterjee/Library/Python/3.9/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh 'chmod +x ./scripts/deliver.sh'
+                sh 'chmod +x ./scripts/kill.sh'
+                sh './scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './scripts/kill.sh'
             }
         }
 
