@@ -34,8 +34,6 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script{
-                    sh '/usr/local/bin/docker stop $(/usr/local/bin/docker ps -a -q)'
-                    sh '/usr/local/bin/docker rmi -f $(/usr/local/bin/docker images -a -q)'
                     sh 'cp ./config.json ~/.docker/config.json'
                     dockerimage = sh '/usr/local/bin/docker build -t'+registry+':latest .'
                 }
