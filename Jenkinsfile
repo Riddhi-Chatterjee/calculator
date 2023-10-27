@@ -46,5 +46,10 @@ pipeline {
                 } 
             }
         }
+        stage('Free local space') {
+            steps {
+                sh '/usr/local/bin/docker rmi $registry:latest'
+            }
+        }
     }
 }
