@@ -1,11 +1,16 @@
 ---
-- name: Pull Docker Image of Calculator
+- name: Pull docker image of Calculator
   hosts: localhost
   tasks:
-    - name: Pull image
-      docker_image:
-        name: riddhich/calculator:latest
-        source: pull
-    
-    - name: Running container
+
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+        
+    - name: pull docker image
+      shell: docker pull docker.io/riddhich/calculator:latest
+      
+    - name: running container
       shell: docker run -it -d --name Calculator riddhich/calculator
+      
