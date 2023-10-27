@@ -51,17 +51,24 @@ pipeline {
                 sh '/usr/local/bin/docker rmi $registry:latest'
             }
         }
-        stage('Step 6: Ansible Deployment') {
+        // stage('Step 6: Ansible Deployment') {
+        //     steps {
+        //         ansiblePlaybook becomeUser: null,
+        //         colorized: true,
+        //         credentialsId: 'localhost',
+        //         disableHostKeyChecking: true,
+        //         installation: 'Ansible',
+        //         inventory: 'Deployment/inventory',
+        //         playbook: 'Deployment/deploy.yml',
+        //         sudoUser: null
+        //     }
+        // } 
+
+        stage('Deploy') {
             steps {
-                ansiblePlaybook becomeUser: null,
-                colorized: true,
-                credentialsId: 'localhost',
-                disableHostKeyChecking: true,
-                installation: 'Ansible',
-                inventory: 'Deployment/inventory',
-                playbook: 'Deployment/deploy.yml',
-                sudoUser: null
+                sh '/opt/homebrew/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'
             }
-        } 
+        }
+
     }
 }
