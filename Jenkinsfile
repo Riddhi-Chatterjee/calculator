@@ -34,6 +34,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script{
+                    sh 'docker rmi -f $(docker images -a -q)'
                     sh 'cp ./config.json ~/.docker/config.json'
                     dockerimage = sh '/usr/local/bin/docker build -t'+registry+':latest .'
                 }
