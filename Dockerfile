@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:alpine
+FROM --platform=linux/arm64/v8 node:alpine
 
 WORKDIR '/calculator'
 ADD . /calculator

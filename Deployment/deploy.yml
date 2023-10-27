@@ -10,5 +10,6 @@
       service:
         name: docker
         state: started
+      when: ansible_facts['os_family'] == "Debian"
     - name: Running container
-      shell: docker run -it -d --name Calculator riddhich/calculator
+      shell: docker run -it -p 3000:3000 -d riddhich/calculator:latest
