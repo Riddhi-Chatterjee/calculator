@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Wrapper from './Wrapper';
-import Screen from './Screen';
+import Wrapper from './components/Wrapper';
+import Screen from './components/Screen';
 
 const btnValues = [
   ["C", "+-", "%", "/"],
