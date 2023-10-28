@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
-echo 'The following command terminates the "npm start" process using its PID'
-echo '(written to ".pidfile"), all of which were conducted when "deliver.sh"'
-echo 'was executed.'
+echo 'This script obtains the PID of the "npm start" process and kills it,'
+echo 'thereby shutting down our calculator application running on localhost:3000'
 set -x
-kill $(cat .pidfile)
+lsof -i :3000 >> temp.txt
+pid_3000=$(awk 'NR == 2 {print $2}' temp.txt)
+kill $pid_3000
+rm temp.txt
