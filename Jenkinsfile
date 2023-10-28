@@ -34,7 +34,8 @@ pipeline {
         stage('Build docker image') {
             steps {
                 script{
-                    sh 'cp ./config.json ~/.docker/config.json'
+                    sh 'chmod 777 ./scripts/config.sh' //Ensuring that config.sh is executable
+                    sh './scripts/config.sh' //Executing config.sh
                     dockerimage = sh '/usr/local/bin/docker build -t'+registry+':latest .'
                 }
             }
