@@ -3,6 +3,7 @@
 * npm i moment
 * npm install --save-dev @babel/plugin-proposal-private-property-in-object
 * export PATH="/Users/riddhichatterjee/Library/Python/3.9/bin:$PATH"
+* npm i react-textfit --force
 
 # Getting Started with Create React App
 
