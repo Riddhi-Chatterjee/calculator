@@ -16,7 +16,7 @@ function App() {
     <div>
       <Wrapper>
         <Screen />
-        <h1>Calculator</h1>
+        <h1>Calc</h1>
       </Wrapper>
     </div>
   );
