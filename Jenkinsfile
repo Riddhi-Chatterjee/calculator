@@ -53,7 +53,7 @@ pipeline {
                 sh '/usr/local/bin/docker rmi $registry:latest'
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
                 sh 'export PATH="/Users/riddhichatterjee/Library/Python/3.9/bin:$PATH"'
                 sh '/Users/riddhichatterjee/Library/Python/3.9/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'

@@ -37,7 +37,11 @@ const Button = ({ value }) => {
             '.': dotClick,
             'C': clearClick
         }
-        return results[value]()
+        if(results[value]) {
+            return results[value]()
+        } else {
+            return handleClickButton()
+        }
     }
 
     return (
