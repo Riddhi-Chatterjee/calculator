@@ -1,6 +1,6 @@
-const Button = () => {
+const Button = ({ value }) => {
     return (
-        <div>Button</div>
+        <button className="button">{value}</button>
     )
 }
 export default Button

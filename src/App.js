@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Wrapper from './components/Wrapper';
 import Screen from './components/Screen';
+import ButtonBox from './components/ButtonBox';
+import Button from './components/Button';
 
 const btnValues = [
   ["C", "+-", "%", "/"],
@@ -16,7 +18,14 @@ function App() {
     <div>
       <Wrapper>
         <Screen />
-        <h1>Calc</h1>
+        <ButtonBox>
+          {btnValues.flat().map((btn, i) => (
+            <Button
+              value={btn}
+              key={i}
+            />
+          ))}
+        </ButtonBox>
       </Wrapper>
     </div>
   );
