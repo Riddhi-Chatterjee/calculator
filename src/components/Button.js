@@ -13,20 +13,29 @@ const getStyleName = btn => {
 }
 
 const Button = ({ value }) => {
-    const { setCalc } = useContext(CalcContext)
+    const { calc, setCalc } = useContext(CalcContext)
     console.log(setCalc);
 
 
     //User click: dot
     const dotClick = () => {
-        
+        setCalc({
+            ...clac,
+            num: !calc.num.toString().includes('.') ? calc.num + value : calc.num //Add a decimal point only if it's not present already
+        })
+    }
+
+    //User click: clear
+    const clearClick = () => {
+        setCalc({ sign: '', num: 0, res: 0 })
     }
 
     const handleBtnClick = () => {
         console.log(value);
 
         const results = {
-            '.': dotClick
+            '.': dotClick,
+            'C': clearClick
         }
         return results[value]()
     }
