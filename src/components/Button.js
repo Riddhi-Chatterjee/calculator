@@ -14,7 +14,7 @@ const getStyleName = btn => {
 
 const Button = ({ value }) => {
     const { calc, setCalc } = useContext(CalcContext)
-    console.log(setCalc);
+    //console.log(setCalc);
 
 
     //User click: dot
@@ -35,10 +35,11 @@ const Button = ({ value }) => {
         const numberString = value.toString()
 
         let numberValue;
-        if(numberString === '0' && calc.num === 0) {
-            numberValue = "0"
+        numberValue = calc.num + numberString
+        if (numberValue.includes('.') && numberString === '0') {
+            console.log(numberValue)
         } else {
-            numberValue = Number(calc.num + numberString)
+            numberValue = Number(numberValue)
         }
 
         setCalc({
@@ -59,6 +60,9 @@ const Button = ({ value }) => {
     //User click: equals
     const equalsClick = () => {
         if(calc.res && calc.num) {
+            calc.res = Number(calc.res)
+            calc.num = Number(calc.num)
+
             const math = (a, b, sign) => {
                 const result = {
                     '+': (a, b) => a + b,
@@ -68,6 +72,7 @@ const Button = ({ value }) => {
                 }
                 return result[sign](a, b);
             }
+
             setCalc({
                 res: math(calc.res, calc.num, calc.sign),
                 sign: '',
@@ -78,6 +83,8 @@ const Button = ({ value }) => {
 
     //User click: percentage
     const percentageClick = () => {
+        calc.res = Number(calc.res)
+        calc.num = Number(calc.num)
         setCalc({
             num: (calc.num/100),
             res: (calc.res/100),
@@ -87,6 +94,12 @@ const Button = ({ value }) => {
 
     //User click: invert sign
     const invertClick = () => {
+        if(calc.res) {
+            calc.res = Number(calc.res)
+        }
+        if (calc.num) {
+            calc.num = Number(calc.num)
+        }
         setCalc({
             num: calc.num ? calc.num * -1 : 0,
             res: calc.res ? calc.res * -1 : 0,
@@ -95,7 +108,7 @@ const Button = ({ value }) => {
     }
 
     const handleBtnClick = () => {
-        console.log(value);
+        //console.log(value);
 
         const results = {
             '.': dotClick,
