@@ -12,4 +12,5 @@
         state: started
       when: ansible_facts['os_family'] == "Debian"
     - name: Running container
-      shell: /usr/local/bin/docker run -it -p 3000:3000 -d riddhich/calculator:latest
+      shell: /usr/local/bin/docker run -it -p 3000:3000 -d riddhich/calculator:latest >> ./container_id.txt
+
