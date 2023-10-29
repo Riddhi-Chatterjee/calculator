@@ -21,8 +21,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm install' //Installing dependencies
-                sh 'npm i react-textfit --force' //Installing react-textfit dependency forcefully
+                sh 'npm install --force' //Installing dependencies
                 sh 'tar czf Calculator.tar.gz node_modules public scripts src Jenkinsfile package.json' //Creating a compressed archive of the required files and directories
             }
         }
