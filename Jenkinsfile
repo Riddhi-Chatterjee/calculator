@@ -53,17 +53,11 @@ pipeline {
                 sh '/usr/local/bin/docker rmi $registry:latest'
             }
         }
-        stage('Deploy') {
+        stage('Deliver') {
             steps {
                 sh 'export PATH="/Users/riddhichatterjee/Library/Python/3.9/bin:$PATH"'
                 sh '/Users/riddhichatterjee/Library/Python/3.9/bin/ansible-playbook ./Deployment/deploy.yml -i ./Deployment/inventory -e image_name=riddhich/calculator'
-            }
-        }
-        stage('Deliver') {
-            steps {
-                sh 'chmod 777 ./scripts/deliver.sh'
                 sh 'chmod 777 ./scripts/kill.sh'
-                sh './scripts/deliver.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh './scripts/kill.sh'
             }
