@@ -3,7 +3,7 @@ FROM --platform=linux/arm64/v8 node:alpine
 WORKDIR '/calculator'
 ADD . /calculator
 
-COPY package*.json ./
+COPY package.json ./
 RUN npm install
 RUN npm i react-textfit --force
 
