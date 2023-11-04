@@ -1,2 +1,2 @@
-[local]
-localhost ansible_connection=local ansible_python_interpreter="/Users/riddhichatterjee/opt/anaconda3/bin/python"
+[localhost]
+127.0.0.1 ansible_connection=local ansible_user=riddhichatterjee
